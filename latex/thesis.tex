@@ -1,24 +1,26 @@
-\documentclass{article}
+\documentclass{report}
+\usepackage{authblk}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[style=alphabetic]{biblatex}
+\addbibresource{references.bib} % include citations/references
+
+% Preamble
 \begin{document}
 \title{Applications of computer-vision for implement feedback and
   control}
 \author{Trevor Stanhope}
+\affil{McGill University}
 \maketitle
-\begin{abstract}
-For organic row crops, frequent cultivation is required for weed
-control, and these implements require precise guidance systems to
-assure proper positioning of the working tools.
-Legacy systems have made use of mechanical guiding rods, but these
-systems perform poorly in the earliest stages of crop growth.
-Modern techniques based on RTK GPS are available commercially but are
-prohibitively expensive for small-scale operations.
-Therefore, the objective of this study was to develop a low-cost CCD camera system which is capable of supplementing the mechanical row detection during inter-row cultivation.
-A computer-vision guidance system was developed for the Intel Atom architecture to interface with an electro-hydraulic steering hitch system.
-Two redundant CCD cameras were mounted to the cultivator toolbar
-in-line with crop rows to obtain a video stream of the plants passing beneath the implement.
-The OpenCV platform was used to develop an algorithm for identifying
-the lateral offset of the plant rows and adjust the hydraulic steering
-accordingly via PID control.
-The computer-vision guidance system was tested successfully without GPS RTK assistance at travel speeds of 6, 8, 10, and 12 km/h in corn and soybean fields under varying ambient light and crop conditions. 
-\end{abstract}
+
+% Include additional chapters, documents, appendicies
+\chapter{Name of Chapter}
+\include{chapters/chapter1}
+\chapter{Name of Chapter2}
+\include{chapters/chapter2}
+
+% Bibliography
+\nocite{*}
+\printbibliography
+
 \end{document}

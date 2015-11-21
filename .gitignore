@@ -2,3 +2,8 @@
 #*#
 *.aux
 *.log
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.spl

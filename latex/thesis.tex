@@ -4,21 +4,32 @@
 \usepackage[english]{babel}
 \usepackage[style=alphabetic]{biblatex}
 \addbibresource{references.bib} % include citations/references
+\usepackage{listings}
+\usepackage{lipsum}
+\usepackage{color}
 
 % Preamble
 \begin{document}
-\title{Applications of computer-vision for implement feedback and
-  control}
+\title{Applications of computer-vision for agricultural implement feedback and control}
 \author{Trevor Stanhope}
 \affil{McGill University}
 \maketitle
 
 
-% Include additional chapters, documents, appendicies
-\chapter{Evaluation of guidance system}
+% Include Chapters
+\chapter{Introduction}
+\include{chapters/introduction}
+\chapter{Evaluation of inter-row cultivator guidance system}
 \include{chapters/chapter1}
-\chapter{Comparison of feature-based motion estimation}
+\chapter{Comparison of feature-based motion estimation algorithms}
 \include{chapters/chapter2}
+\chapter{Conclusion}
+\include{chapters/conclusion}
+
+% Include Appendicies
+\appendix
+\chapter{Python Application}
+\input{chapters/appendix}
 
 % Bibliography
 \nocite{*}

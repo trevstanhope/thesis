@@ -1,3 +1,3 @@
-# (Thesis) Applications of computer-vision for agricultural implement feedback and control
-## Chapter 1. Evaluation of an inter-row guidance system
-## Chapter 2. Comparision of feature-based motion estimation algorithms
+# Applications of computer-vision for agricultural implement feedback and control
+## Chp 1. Evaluation of an inter-row cultivator guidance system based on HSV band-pass crop detection
+## Chp 2. Comparision of feature-based algorithms for agricultural vehicle motion estimation 

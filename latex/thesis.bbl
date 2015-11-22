@@ -1,0 +1,285 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.4 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{anyt}{anyt}
+    \entry{astrand}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=1ab9c1b7454df5b7fb903b169b4d8e8e}{Astrand}{A\bibinitperiod}{B.}{B\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=1ab9c1b7454df5b7fb903b169b4d8e8e}{Astrand}{A\bibinitperiod}{B.}{B\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{1ab9c1b7454df5b7fb903b169b4d8e8e}
+      \strng{fullhash}{1ab9c1b7454df5b7fb903b169b4d8e8e}
+      \field{labelalpha}{Ast04}
+      \field{sortinit}{A}
+      \field{sortinithash}{c8a29dea43e9d2645817723335a4dbe8}
+      \field{labeltitle}{A vision-based row-following system for agricultural field machinery}
+      \field{journaltitle}{Mechatronics}
+      \field{number}{1}
+      \field{title}{A vision-based row-following system for agricultural field machinery}
+      \field{volume}{15}
+      \field{year}{2004}
+      \field{pages}{251\bibrangedash 269}
+    \endentry
+    \entry{bay}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=f29476d21dba36576a275921245f7b52}{Bay}{B\bibinitperiod}{H.}{H\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=f29476d21dba36576a275921245f7b52}{Bay}{B\bibinitperiod}{H.}{H\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{f29476d21dba36576a275921245f7b52}
+      \strng{fullhash}{f29476d21dba36576a275921245f7b52}
+      \field{labelalpha}{Bay08}
+      \field{sortinit}{B}
+      \field{sortinithash}{1a3a21dbed09540af12d49a0b14f4751}
+      \field{labeltitle}{Speeded-up robust features (SURF)}
+      \field{journaltitle}{Computer Vision and Image Understanding}
+      \field{number}{3}
+      \field{title}{Speeded-up robust features (SURF)}
+      \field{volume}{110}
+      \field{year}{2008}
+      \field{pages}{346\bibrangedash 359}
+    \endentry
+    \entry{Brivot}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=25c19896ecad956618d40ccf6643c7bf}{Brivot}{B\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=25c19896ecad956618d40ccf6643c7bf}{Brivot}{B\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{25c19896ecad956618d40ccf6643c7bf}
+      \strng{fullhash}{25c19896ecad956618d40ccf6643c7bf}
+      \field{labelalpha}{Bri96}
+      \field{sortinit}{B}
+      \field{sortinithash}{1a3a21dbed09540af12d49a0b14f4751}
+      \field{labeltitle}{Segmentation of plants and weeds using infrared images}
+      \field{journaltitle}{Proceedings of the Institution of Electrical Engineers, Vision, Image and Signal Processing}
+      \field{number}{2}
+      \field{title}{Segmentation of plants and weeds using infrared images}
+      \field{volume}{143}
+      \field{year}{1996}
+      \field{pages}{118\bibrangedash 124}
+    \endentry
+    \entry{gauglitz}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=a9fe7b28625256c382e2d44d17b9190c}{Gauglitz}{G\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=a9fe7b28625256c382e2d44d17b9190c}{Gauglitz}{G\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{a9fe7b28625256c382e2d44d17b9190c}
+      \strng{fullhash}{a9fe7b28625256c382e2d44d17b9190c}
+      \field{labelalpha}{Gau11}
+      \field{sortinit}{G}
+      \field{sortinithash}{480ee01f9ffd559b3258d822f54a8ac2}
+      \field{labeltitle}{Evaluation of interest point detectors and feature descriptors for visual tracking}
+      \field{journaltitle}{International journal of computer vision}
+      \field{number}{3}
+      \field{title}{Evaluation of interest point detectors and feature descriptors for visual tracking}
+      \field{volume}{94}
+      \field{year}{2011}
+      \field{pages}{335\bibrangedash 360}
+    \endentry
+    \entry{giles}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=55be6926cd6d1f44254cf642c8bd11da}{Giles}{G\bibinitperiod}{D.K.}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=55be6926cd6d1f44254cf642c8bd11da}{Giles}{G\bibinitperiod}{D.K.}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{55be6926cd6d1f44254cf642c8bd11da}
+      \strng{fullhash}{55be6926cd6d1f44254cf642c8bd11da}
+      \field{labelalpha}{Gil97}
+      \field{sortinit}{G}
+      \field{sortinithash}{480ee01f9ffd559b3258d822f54a8ac2}
+      \field{labeltitle}{Precision band spraying with machine-vision guidance and adjustable yaw nozzle}
+      \field{journaltitle}{Transactions of the ASAE}
+      \field{number}{1}
+      \field{title}{Precision band spraying with machine-vision guidance and adjustable yaw nozzle}
+      \field{volume}{40}
+      \field{year}{1997}
+      \field{pages}{29\bibrangedash 36}
+    \endentry
+    \entry{hague}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=5cdf62331203c79f468d9bcec4f19de7}{Hague}{H\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=5cdf62331203c79f468d9bcec4f19de7}{Hague}{H\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{5cdf62331203c79f468d9bcec4f19de7}
+      \strng{fullhash}{5cdf62331203c79f468d9bcec4f19de7}
+      \field{labelalpha}{Hag01}
+      \field{sortinit}{H}
+      \field{sortinithash}{95b2cb08933fe649b7e9f8beee2132b4}
+      \field{labeltitle}{A bandpass filter-based approach to crop row location and tracking}
+      \field{journaltitle}{Mechatronics}
+      \field{number}{1}
+      \field{title}{A bandpass filter-based approach to crop row location and tracking}
+      \field{volume}{11}
+      \field{year}{2001}
+      \field{pages}{1\bibrangedash 12}
+    \endentry
+    \entry{kise}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=39440a339f0a46f3051108b419b1f45c}{Kise}{K\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=39440a339f0a46f3051108b419b1f45c}{Kise}{K\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{39440a339f0a46f3051108b419b1f45c}
+      \strng{fullhash}{39440a339f0a46f3051108b419b1f45c}
+      \field{labelalpha}{Kis05}
+      \field{sortinit}{K}
+      \field{sortinithash}{33bf4c961fa093ee6a297ccbd88eacc0}
+      \field{labeltitle}{A stereovision-based crop row detection method for tractor-automated guidance}
+      \field{journaltitle}{Biosystems Engineering}
+      \field{number}{4}
+      \field{title}{A stereovision-based crop row detection method for tractor-automated guidance}
+      \field{volume}{90}
+      \field{year}{2005}
+      \field{pages}{357\bibrangedash 367}
+    \endentry
+    \entry{marchant}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=bf63e063b2a298d8646e2cafabcef2b5}{Marchant}{M\bibinitperiod}{J.A.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=bf63e063b2a298d8646e2cafabcef2b5}{Marchant}{M\bibinitperiod}{J.A.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{bf63e063b2a298d8646e2cafabcef2b5}
+      \strng{fullhash}{bf63e063b2a298d8646e2cafabcef2b5}
+      \field{labelalpha}{Mar95}
+      \field{sortinit}{M}
+      \field{sortinithash}{4203d16473bc940d4ac780773cb7c5dd}
+      \field{labeltitle}{Real-time tracking of plant rows using a Hough transform}
+      \field{journaltitle}{Real-Time Imaging}
+      \field{number}{1}
+      \field{title}{Real-time tracking of plant rows using a Hough transform}
+      \field{volume}{1}
+      \field{year}{1995}
+      \field{pages}{363\bibrangedash 371}
+    \endentry
+    \entry{olsen}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=c123fab9c78e95e03d52dd39fc7aff19}{Olsen}{O\bibinitperiod}{H.J.}{H\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=c123fab9c78e95e03d52dd39fc7aff19}{Olsen}{O\bibinitperiod}{H.J.}{H\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{c123fab9c78e95e03d52dd39fc7aff19}
+      \strng{fullhash}{c123fab9c78e95e03d52dd39fc7aff19}
+      \field{labelalpha}{Ols95}
+      \field{sortinit}{O}
+      \field{sortinithash}{59512cfd31be1dcef4def024230bdc1d}
+      \field{labeltitle}{Determination of row position in small-grain crops by analysis of video images}
+      \field{journaltitle}{Computers and Electronics in Agriculture}
+      \field{number}{2}
+      \field{title}{Determination of row position in small-grain crops by analysis of video images}
+      \field{volume}{12}
+      \field{year}{1995}
+      \field{pages}{146\bibrangedash 162}
+    \endentry
+    \entry{pla}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=478cb8323f56bef0e1dfcb2c61da77a3}{Pla}{P\bibinitperiod}{F.}{F\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=478cb8323f56bef0e1dfcb2c61da77a3}{Pla}{P\bibinitperiod}{F.}{F\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{478cb8323f56bef0e1dfcb2c61da77a3}
+      \strng{fullhash}{478cb8323f56bef0e1dfcb2c61da77a3}
+      \field{labelalpha}{Pla97}
+      \field{sortinit}{P}
+      \field{sortinithash}{b8af9282ac256b81613dc9012a0ac921}
+      \field{labeltitle}{Building perspective models to guide a row crop navigation vehicle}
+      \field{journaltitle}{Image and Vision Computing}
+      \field{number}{1}
+      \field{title}{Building perspective models to guide a row crop navigation vehicle}
+      \field{volume}{15}
+      \field{year}{1997}
+      \field{pages}{465\bibrangedash 473}
+    \endentry
+    \entry{rublee}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=147024023123c71738c9d3364856a997}{Rublee}{R\bibinitperiod}{E.}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=147024023123c71738c9d3364856a997}{Rublee}{R\bibinitperiod}{E.}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{147024023123c71738c9d3364856a997}
+      \strng{fullhash}{147024023123c71738c9d3364856a997}
+      \field{labelalpha}{Rub11}
+      \field{sortinit}{R}
+      \field{sortinithash}{ff5a3533ecf9d5a03ff60b1e1389b63d}
+      \field{labeltitle}{ORB: an efficient alternative to SIFT or SURF}
+      \field{journaltitle}{Computer Vision (ICCV), 2011 IEEE International Conference}
+      \field{number}{?}
+      \field{title}{ORB: an efficient alternative to SIFT or SURF}
+      \field{volume}{?}
+      \field{year}{2011}
+      \field{pages}{?\bibrangedash ?}
+    \endentry
+    \entry{søgaard}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=e5104f6baadaaef495d6a3a8e17a3623}{Søgaard}{S\bibinitperiod}{H.T.}{H\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=e5104f6baadaaef495d6a3a8e17a3623}{Søgaard}{S\bibinitperiod}{H.T.}{H\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{e5104f6baadaaef495d6a3a8e17a3623}
+      \strng{fullhash}{e5104f6baadaaef495d6a3a8e17a3623}
+      \field{labelalpha}{Søg03}
+      \field{sortinit}{S}
+      \field{sortinithash}{4125bb4c3a0eb3eaee3ea6da32eb70c8}
+      \field{labeltitle}{Determination of crop rows by image analysis without segmentation}
+      \field{journaltitle}{Computers and Electronics in Agriculture}
+      \field{number}{2}
+      \field{title}{Determination of crop rows by image analysis without segmentation}
+      \field{volume}{38}
+      \field{year}{2003}
+      \field{pages}{141\bibrangedash 158}
+    \endentry
+    \entry{tillet}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=f9c2a794c7cde4b88fb0c700a98cb948}{Tillet}{T\bibinitperiod}{N.D.}{N\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=f9c2a794c7cde4b88fb0c700a98cb948}{Tillet}{T\bibinitperiod}{N.D.}{N\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{f9c2a794c7cde4b88fb0c700a98cb948}
+      \strng{fullhash}{f9c2a794c7cde4b88fb0c700a98cb948}
+      \field{labelalpha}{Til02}
+      \field{sortinit}{T}
+      \field{sortinithash}{9378dd666f3c24d81538df53aa99e23d}
+      \field{labeltitle}{Inter-row vision guidance for mechanical weed control in sugar beet}
+      \field{journaltitle}{Computers and Electronics in Agriculture}
+      \field{number}{3}
+      \field{title}{Inter-row vision guidance for mechanical weed control in sugar beet}
+      \field{volume}{33}
+      \field{year}{2002}
+      \field{pages}{163\bibrangedash 177}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

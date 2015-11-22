@@ -1,2 +1,9 @@
 *~
 #*#
+*.bbl
+*.aux
+*.bcf
+*.blg
+*.dvi
+*.log
+*.xml

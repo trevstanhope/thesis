@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """
 Agri-Vision
-Precision Agriculture and Soil Sensing Group (PASS)
+Precision Agriculture and Sensor Systems Group (PASS)
 McGill University, Department of Bioresource Engineering
 """
 
@@ -298,10 +298,9 @@ class app:
     ## Plant Segmentation Filter
     def bppd_filter(self, images):    
         """
-        1. RBG --> HSV
-        2. Set minimum saturation equal to the mean saturation
-        3. Set minimum value equal to the mean value
-        4. Take hues within range from green-yellow to green-blue
+        RBG --> HSV
+        Set saturation/value equal to BPPD(S, V)
+        Take hues within range from green-yellow to green-blue
         """
         if self.config['VERBOSE']: self.log_msg('BPPD', 'Filtering for plants ...')
         if images == []: raise Exception("No input image(s)!", important=True)
@@ -333,11 +332,8 @@ class app:
     ## Find Plants
     def find_offset(self, masks):
         """
-        1. Calculates the column summation of the mask
-        2. Calculates the 95th percentile threshold of the column sum array
-        3. Finds indicies which are greater than or equal to the threshold
-        4. Finds the median of this array of indices
-        5. Repeat for each mask
+        Finds indicies which are possible centroids
+        Note: Repeated for each mask
         """
         if self.config['VERBOSE']: self.log_msg('BPPD', 'Finding offset of row ...')
         if masks == []: raise Exception("No input mask(s)!", important=True)
@@ -350,7 +346,6 @@ class app:
                     colsum = mask.sum(axis=0) # vertical summation
                     T = np.percentile(colsum, self.config['THRESHOLD_PERCENTILE'])
                     probable = np.nonzero(colsum >= T) # returns 1 length tuble
-                    if self.config['DEBUG']: pass
                     num_probable = len(probable[0])
                     best = int(np.median(probable[0]))
                     s = colsum[best]
@@ -366,12 +361,9 @@ class app:
     ## Best Guess for row based on multiple offsets from indices
     def estimate_row(self, indices, sums, tol=32):
         """
-        1. If outside bounds, ignore
-        2. If inside, check difference between indices from both cameras
-        3. If similar, take mean, else take dominant estimation
-        1. Takes the current assumed offset and number of averages
-        2. Calculate weights of previous offset
-        3. Estimate the weighted position of the crop row (in pixels)
+        If within tolerance, check error between indices from both cameras
+        If similar, take mean, else take dominant estimation
+        1. Estimate the weighted position of the crop row (in pixels)
         """
         if self.config['VERBOSE']:self.log_msg('ROW', 'Smoothing offset estimation ...')
         if sums == []: raise Exception("No input sum(s)!", important=True)
@@ -388,7 +380,7 @@ class app:
                 cur = np.mean(indices)
         except Exception as error:
             self.log_msg('ROW', 'ERROR: %s' % str(error), important=True)
-            est = self.config['CAMERA_WIDTH'] / 2
+            cur = self.config['CAMERA_WIDTH'] / 2
 
         # Insert current into local memory
         self.offset_history.append(cur)
@@ -398,9 +390,10 @@ class app:
 
         # Smooth
         n = int(np.ceil(self.config['N_SAMPLES'] / float(self.config['AGGRESSIVENESS'])))
-        est =  int(self.offset_history[-1]) #!TODO
-        avg = int(np.mean(self.offset_history[-n:])) #!TODO
-        diff = int(np.mean(np.diff(self.offset_history[-n:]))) #!TODO can be a little more clever e.g. np.gradient, np.convolve
+        m = int(np.ceil(self.config['M_SAMPLES'] / float(self.config['AGGRESSIVENESS'])))
+        est =  int(self.offset_history[-1])
+        avg = int(np.mean(self.offset_history[-n:]))
+        diff = int(np.mean(np.diff(self.offset_history[-m:])))
         b = time.time()
         if self.config['VERBOSE']: self.log_msg('ROW', '... %.2f ms' % ((b - a) * 1000))
         return est, avg, diff
@@ -411,7 +404,7 @@ class app:
         Calculates the PID output for the PWM controller
         Arguments: est, avg, diff
         Requires: PWM_VOLTAGE, PWM_RESOLUTION, MAX_VOLTAGE, MIN_VOLTAGE
-        Returns: PWM
+        Returns: PWM signal
         """
         if self.config['VERBOSE']: self.log_msg('PID', 'Calculating PID Output ...')
         a = time.time()
@@ -480,8 +473,8 @@ class app:
     ## Log to Mongo
     def log_db(self, sample):
         """
-        1. Log results to the database
-        2. Returns Doc ID
+        Log results to the database
+        Returns: Doc ID
         """
         if self.config['VERBOSE']: self.log_msg('MDB', 'Writing to database ...')
         try:          
@@ -495,8 +488,8 @@ class app:
     ## Log to File
     def log_data(self, data):
         """
-        1. Open new text file
-        2. For each document in session, print parameters to file
+        Open new text file
+        For each document in session, print parameters to file
         """
         try:
             if self.data_log is None: raise Exception("Missing data logfile!")
@@ -547,6 +540,9 @@ class app:
 
     ## Run Calibration
     def run_calibration(self, delay=1.0, sweeps=2):
+        """
+        Execute calibration routine (if necessary) for hydraulic controller
+        """
         self.calibrating = True
         self.log_msg('LOG', 'WARN: Running calibration sweep ...', important=True)
         v_zero = (self.config['MAX_VOLTAGE'] + self.config['MIN_VOLTAGE']) / 2.0
@@ -645,10 +641,9 @@ class app:
     ## Update the Display
     def update_display(self, images, masks, volts, avg):
         """
-        0. Check for concurrent update process
-        1. Draw lines on RGB images
-        2. Draw lines on ABP masks
-        3. Output GUI display
+        Check for concurrent update process
+        Draw graphics on images
+        Output GUI display
         """
         if self.config['VERBOSE']: self.log_msg('DISP', 'Updating display...')
         a = time.time()
@@ -674,8 +669,8 @@ class app:
     ## Update GPS
     def update_gps(self):
         """
-        1. Get the most recent GPS data
-        2. Set global variables for lat, long and speed
+        Get the most recent GPS data
+        Sets: Global variables lat, long and speed
         """
         if self.config['GPS_ENABLED']:
             if self.gpsd is not None:
@@ -731,17 +726,15 @@ class app:
     def run(self):
         """
         Function for Run-time loop
-        1. Get initial time
-        2. Capture images
-        3. Generate mask filter for plant matter
-        4. Calculate indices of rows
+        1. Capture images
+        2. Generate mask filter for plant matter
+        3. Calculate indices of rows
         5. Estimate row from both images
-        6. Get number of averages
-        7. Calculate moving average
-        8. Send PWM response to controller
-        9. Throttle to desired frequency
-        10. Log results to DB
-        11. Display results
+        4. Get number of averages
+        5. Calculate moving average
+        6. Send PWM response to controller
+        7a. Log results to DB
+        7b. Display results
         """
         if self.running: 
             return # Don't do anything
@@ -756,7 +749,9 @@ class app:
                 pwm = self.set_controller(sig)
                 volts = self.to_volts(pwm)
                 self.log_msg("SYS", "err:%s, cams:%d, pwm:%d, volts:%2.2f" % (str(offsets), avg, pwm, volts), important=True)
-                if self.config['MONGO_ON']: doc_id = self.log_db(sample)
+                if self.config['MONGO_ON']:
+                    sample = {'sig':sig, "pwm":pwm, "volts":volts, "est":est, "sums":sums, "offsets":offsets}
+                    doc_id = self.log_db(sample)
                 if self.config['DATALOG_ON']: self.log_data([est, sig, pwm, volts])
                 if self.config['DISPLAY_ON']:
                     try:
@@ -788,9 +783,7 @@ class app:
 
     ## Save Image
     def save_image(self, filename='out.jpg', subdir='agionic/www'):
-        """
-        Save image to output file (to be loaded by webserver)
-        """
+        """ Save image to output file (to be loaded by webserver) """
         try:
             if self.config['VERBOSE']: self.log_msg('HTTP', 'Saving output image to file')
             filepath = os.path.join(self.CURRENT_DIR, subdir, filename)
@@ -800,9 +793,7 @@ class app:
 
     ## Save Settings
     def save_settings(self, keyval, filename='custom.json', subdir='modes'):
-        """
-        Save current config to a custom config file
-        """
+        """ Save current config to a custom config file """
         keys = keyval.keys()
         vals = [int(v) for v in keyval.values()]
         new_settings = dict(zip(keys, vals))
@@ -814,9 +805,7 @@ class app:
     
     ## Default Settings
     def default_settings(self, filename='default.json', subdir='modes'):
-        """
-        Resets config to default settings file
-        """
+        """ Resets config to default settings file """
         filepath = os.path.join(self.CURRENT_DIR, subdir, filename)
         print "WARNING: Loading %s" % filepath
         if os.path.exists(filepath):
@@ -828,9 +817,7 @@ class app:
 
     ## Load Settings
     def load_settings(self, config_file, subdir='modes'):
-        """
-        Load config from input file
-        """
+        """ Load config from input file """
         filepath = os.path.join(self.CURRENT_DIR, subdir, config_file)
         print "WARNING: Loading %s" % filepath
         if os.path.exists(filepath):
@@ -843,6 +830,7 @@ class app:
     ## Render Index
     @cherrypy.expose
     def index(self, indexfile="index.html"):
+        """ Render index file for webhooks"""
         indexpath = os.path.join(self.CURRENT_DIR, self.config['CHERRYPY_PATH'], indexfile)
         with open(indexpath) as html:
             return html.read()
@@ -850,9 +838,7 @@ class app:
     ## Handle Posts
     @cherrypy.expose
     def default(self, *args, **kwargs):
-        """
-        This function is basically the API
-        """
+        """ This function is basically the API """
         try:
             url = args[0] #!TODO: select action depending on request type/url
             #self.save_image()

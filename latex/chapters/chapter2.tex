@@ -161,22 +161,43 @@ For each surface type, five (5) videos were collected
 \section{Results}
 \lipsum[1]
 
-% \begin{table}[h]
-%   \centering
-%   \scalebox{0.6}{
-%     \begin{tabular}{lcccccccc}
-%       \toprule
-%       \multirow{2}[10]{*} & \multicolumn{2}{c}{Temperature (\degree C)} & \multicolumn{2}{c}{Humidity (\%)} & \multicolumn{2}{c}{Amplitude (dB)} & \multicolumn{2}{c}{Frequency (hz)} \\
-%       \cmidrule(1r){2-3} \cmidrule(1r){4-5} \cmidrule(1r){6-7} \cmidrule(1r){8-9}  
-%       & Wi-Fi Off & Wi-Fi On & Wi-Fi Off & Wi-Fi On & Wi-Fi Off & Wi-Fi On & Wi-Fi Off & Wi-Fi On \\
-%       \midrule
-%       Treatment Hives: & 0.50 $\pm$ 6.43 & 19.36 $\pm$ 8.11 & 63.69 $\pm$ 15.01 & 65.67 $\pm$ 16.49 & 38.86 $\pm$ 0.23 & 38.9 $\pm$ 0.29 & 145.55 $\pm$ 15.61 & 143.69 $\pm$ 16.17 \\
-%       Control Hives: & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07 & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 & 133.34 $\pm$ 18.60 & 131.83 $\pm$ 15.94 \\
-%       \bottomrule  
-%     \end{tabular}
-%   }
-%   \caption[\bf Table caption text]{Averaged treatment group and control group temperature, humidity, amplitude, and dominant frequency data presented as mean $\pm$ SD.} 
-% \end{table}
+\begin{table}[h]
+  \centering
+  \caption{RMSE and 95$^{th}$ Percentile
+    with respect to crop-stage (cm).} 
+  \scalebox{0.6}{
+    \begin{tabular}{lcccccccc}
+      \toprule
+      \multirow{2}[10]{*} & \multicolumn{4}{c}{RMSE (cm)} &
+      \multicolumn{4}{c}{95$^{th}$ Percentile (cm)} \\
+      \cmidrule(1r){2-5} \cmidrule(1r){6-9}  
+      & $\le$10 & 10-15 & 15-20 & $\ge$20 & $\le$10 & 10-15 & 15-20 & $\ge$20 \\
+      \midrule
+      Computer-vision & 0.50 $\pm$ 6.43 & 19.36 $\pm$ 8.11 & 63.69 $\pm$ 15.01 & 65.67 $\pm$ 16.49 & 38.86 $\pm$ 0.23 & 38.9 $\pm$ 0.29 & 145.55 $\pm$ 15.61 & 143.69 $\pm$ 16.17 \\
+      Guiding rods: & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07 & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 & 133.34 $\pm$ 18.60 & 131.83 $\pm$ 15.94 \\
+      \bottomrule  
+    \end{tabular}}
+  \label{table:travel_speed}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \caption{RMSE and 95$^{th}$ Percentile
+    with respect to travel speed (km/h).} 
+  \scalebox{0.6}{
+    \begin{tabular}{lcccccccc}
+      \toprule
+      \multirow{2}[10]{*} & \multicolumn{4}{c}{RMSE (cm)} &
+      \multicolumn{4}{c}{95$^{th}$ Percentile (cm)} \\
+      \cmidrule(1r){2-5} \cmidrule(1r){6-9}  
+      & 6 & 8 & 10 & 12 & 6 & 8 & 10 & 12 \\
+      \midrule
+      Computer-vision & 0.50 $\pm$ 6.43 & 19.36 $\pm$ 8.11 & 63.69 $\pm$ 15.01 & 65.67 $\pm$ 16.49 & 38.86 $\pm$ 0.23 & 38.9 $\pm$ 0.29 & 145.55 $\pm$ 15.61 & 143.69 $\pm$ 16.17 \\
+      Guiding rods: & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07 & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 & 133.34 $\pm$ 18.60 & 131.83 $\pm$ 15.94 \\
+      \bottomrule  
+    \end{tabular}}
+  \label{table:travel_speed}
+\end{table}
 
 % --- END Results --- %
 

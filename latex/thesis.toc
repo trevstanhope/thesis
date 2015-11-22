@@ -8,31 +8,31 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.1}Introduction}{1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Literature Review}{1}
+\contentsline {section}{\numberline {2.2}Literature Review}{2}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.3}Methodology}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.1}Plant Segmentation}{8}
+\contentsline {subsection}{\numberline {2.3.1}Plant Segmentation}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.2}Row Estimation}{9}
+\contentsline {subsection}{\numberline {2.3.2}Row Estimation}{8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.3}Electro-hydraulic Control}{13}
+\contentsline {subsection}{\numberline {2.3.3}Electro-hydraulic Control}{11}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3.4}Calibration}{13}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.5}Trials}{16}
+\contentsline {subsection}{\numberline {2.3.5}Trials}{13}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Results}{16}
+\contentsline {section}{\numberline {2.4}Results}{13}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Discussion}{16}
+\contentsline {section}{\numberline {2.5}Discussion}{13}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5.1}Future Improvements}{17}
+\contentsline {subsection}{\numberline {2.5.1}Future Improvements}{14}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.6}Conclusion}{20}
+\contentsline {section}{\numberline {2.6}Conclusion}{15}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.6.1}Acknowledgements}{20}
+\contentsline {subsection}{\numberline {2.6.1}Acknowledgements}{16}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Comparison of feature-based motion estimation algorithms}{21}
+\contentsline {chapter}{\numberline {3}Comparison of feature-based motion estimation algorithms}{17}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.1}Introduction}{1}
 \defcounter {refsection}{0}\relax 
@@ -46,16 +46,16 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.3.3}Keypoint Matching}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.4}Field Trials}{4}
+\contentsline {subsection}{\numberline {3.3.4}Field Trials}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Results}{6}
+\contentsline {section}{\numberline {3.4}Results}{5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Discussion}{6}
+\contentsline {section}{\numberline {3.5}Discussion}{5}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.5.1}Applications}{6}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.6}Conclusion}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Conclusion}{8}
+\contentsline {chapter}{\numberline {4}Conclusion}{7}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Python Application}{1}

@@ -7,3 +7,4 @@
 *.dvi
 *.log
 *.xml
+latex/*.pdf

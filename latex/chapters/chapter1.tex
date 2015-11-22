@@ -27,12 +27,12 @@ implements such as inter-row cultivators. Inter-row cultivation is a
 field operation which requires precise control of the implement in
 order to maximize the tillage area without causing damage to the
 crops. Often, cultivation is conducted at speeds of up to 12 km/h with
-an error tolerance of 5 cm. Many o rganic farmers are not equipped
+an error tolerance of $\pm$5 cm. Many organic farmers are not equipped
 with RTK-guided tillage implements and prefer to use older,
 mechanically-guided systems. A common method for mechanically-guided
 cultivators employs guiding rods (also known as
 brushes) which are mounted to a rotating voltage divider
-(Figure). These rods make contact with the crop stems and their
+(\ref{guiding_rods}). These rods make contact with the crop stems and their
 position approximates that of the crop row. The resulting reference
 signal is fed to a hydraulic control system which adjusts the steering
 mechanism of the implement accordingly. Although these
@@ -43,6 +43,13 @@ track of the row, forcing operators to travel at speeds of less than 6
 km/h. To address this issue, modern systems implement non-contact
 detection methods, such as a secondary RTK GPS antennae or cameras, to
 estimate the lateral offset of the cultivator.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{guiding_rods.jpg}
+  \caption{Mechanical guiding rods.}
+  \label{fig:guiding_rods}
+\end{figure}
 
 The objective of this study was to develop a low-cost, embedded system
 which extends computer-vision row detection functionality to existing
@@ -115,7 +122,9 @@ respectfully.
 
 \begin{figure}
   \centering
+  \includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{oblique_projection.jpg}
   \caption{Perspective vs. orthogonal viewing angles.}
+  \label{fig:projection}
 \end{figure}
 
 Orthogonal methods rely on a camera which faces vertically downward
@@ -183,7 +192,9 @@ harrows or coulters) due to “jumping”, i.e. the effect of the hitch
 shifting the tractor. To address this requires either removing tools
 or dramatically increasing the weight of the tractor, both of which
 are undesirable to the farmer. Stabilizer steering has applications in
-heavier tillage
+heavier tillage.
+
+
 
 A hydraulic hitch positional control system can be expressed as a
 linear system. The output is the lateral error of the vehicle relative
@@ -234,13 +245,6 @@ contributing to image distortion. To provide row estimation redundancy
 in the event of regions of high weed density or gaps in the crop rows,
 the two cameras were installed on the 3rd and 9th row of the
 cultivator.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{guiding_rods.jpg}
-  \caption{Mechanical guiding rods.}
-  \label{fig:guiding_rods}
-\end{figure}
 
 An embedded Linux system based on the Debian 7.8 operating system
 (Linux Kernel 3.2) was developed for the Intel Atom D525
@@ -652,6 +656,13 @@ pivot point is required. Motion estimation of the cameras using
 feature-based keypoint tracking may be a robust solution which does
 not require integration with the hitch controller and is therefore
 system-agnostic.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{lens_distortion.jpg}
+  \caption{Lens distortion}
+  \label{fig:distortion}
+\end{figure}
 
 \section{Conclusion}
 The BPPD method worked well in various lighting conditions and crop conditions.

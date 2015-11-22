@@ -1,4 +1,4 @@
-% Preamble
+% --- Header --- %
 \documentclass{report}
 \usepackage{authblk}
 \usepackage[utf8]{inputenc}
@@ -6,10 +6,18 @@
 \usepackage[style=alphabetic]{biblatex}
 \addbibresource{references.bib} % include citations/references
 \usepackage{listings}
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{gensymb}
+\usepackage{booktabs}
+\usepackage{mathtools} 
 \usepackage{lipsum}
 \usepackage{color}
+% \usepackage{hyperref}
 \usepackage{graphicx}
 \graphicspath{ {figures/} }
+
+% Python-style Highlighting
 \usepackage{color}
 \usepackage{setspace}
 \definecolor{Code}{rgb}{0,0,0}
@@ -28,6 +36,8 @@
 
 \newcommand\pythonstyle{
   \lstset{
+    basicstyle=\tiny,
+    breaklines=true,
     numbers=left,
     numberstyle=\footnotesize,
     numbersep=1em,
@@ -74,14 +84,18 @@
   }
 }
 
-% Cover
+% --- Preamble --- %
 \begin{document}
 \title{Applications of computer-vision for agricultural implement feedback and control}
 \author{Trevor Stanhope}
+% \journal{Journal of Computers and Electronics in Agriculture}
 \affil{McGill University}
 \maketitle
 
-% Include Chapters
+% --- Table of Contents --- %
+\tableofcontents
+
+% --- Chapters --- %
 \chapter{Introduction}
 \include{chapters/introduction}
 \chapter{Evaluation of inter-row cultivator guidance system}
@@ -91,13 +105,14 @@
 \chapter{Conclusion}
 \include{chapters/conclusion}
 
-% Bibliography
+% --- Bibligraphy --- %
 \nocite{*}
 \printbibliography
 
-% Include Appendicies
+% --- Appendix --- %
 \appendix
 \chapter{Python Application}
 \input{chapters/appendix}
 
 \end{document}
+

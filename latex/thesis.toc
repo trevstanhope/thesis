@@ -1,0 +1,61 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {english}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Introduction}{2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Evaluation of inter-row cultivator guidance system}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Introduction}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Literature Review}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Methodology}{5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.1}Plant Segmentation}{8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.2}Row Estimation}{9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.3}Electro-hydraulic Control}{13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.4}Calibration}{13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.5}Trials}{16}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Results}{16}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Discussion}{16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.1}Future Improvements}{17}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}Conclusion}{20}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6.1}Acknowledgements}{20}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Comparison of feature-based motion estimation algorithms}{21}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Introduction}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Literature Review}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Methodology}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.1}Camera Model}{1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.2}Image Processing}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.3}Keypoint Matching}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.4}Field Trials}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Results}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Discussion}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.1}Applications}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.6}Conclusion}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Conclusion}{8}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Python Application}{1}

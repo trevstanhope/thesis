@@ -56,7 +56,7 @@ estimate the lateral offset of the cultivator.
 The objective of this study was to develop a low-cost, embedded system
 which extends computer-vision row detection functionality to existing
 electro-hydraulic implement guidance systems.  To be considered
-effective, the system should be capable of 4 cm precision 95 \% of the 
+effective, the system should be capable of 4 cm precision 95 percent of the 
 time for travel speeds up to 12 km/h and for crops up to 20 cm in
 height.
 
@@ -113,6 +113,7 @@ Alternative approaches have utilized HSV transform
   \centering
   \includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{hsv.jpg}
   \caption{HSV Transform}
+  \label{fig:hsv}
 \end{figure}
 
 After segmentation of the plants within the image, it is necessary to
@@ -150,7 +151,7 @@ plants in the image, it was considered a weed and disregarded. The row
 offset was then calculated based on the medians of the remaining
 plants. This method was tested on lettuce and tomatoes for use with a
 band sprayer operating at 8 km/h and performed successfully with
-standard error of 9 mm and within 12 mm 95th of time.
+standard error of 9 mm and within 12 mm 95\% of the time.
 
 Conversely, perspective methods rely on a camera with a positive angle
 of inclination with multiple rows in the field of view. One approach
@@ -165,7 +166,7 @@ beets. Supported by the British Beet Research Organization the
 developed system was capable of 3 cm precision at speeds of up to 10
 km/h. The project was considered highly successful and was
 commercialized in 2001 in partnership with Garford Farm Machinery and
-Robodome Electronics under the name RoboCrop1.
+Robodome Electronics under the name RoboCrop.
 
 When comparing the orthogonal and perspective methods, both have
 advantages and disadvantages. The perspective approach is less
@@ -254,15 +255,14 @@ using the Python programming language (v. 2.7.6) which operated as a
 local microwebserver. A high-speed database server (MongoDB 32-bit)
 was implemented for ultra-low latency storage and retrieval of
 data. This robust platform provided sufficient computing power for
-real-time image analysis at a relatively low cost.
-
-To generate the output voltage signal of the control system, an
+real-time image analysis at a relatively low cost. To generate the
+output voltage signal of the control system, an
 ATmega328P microcontroller was used as an 8-bit PWM generator. The
 microcontroller was integrated as a Universal Serial Bus (USB)
-peripheral device with the microprocessor as the host.
+peripheral device with the microprocessor as the host. 
 
-To aid user operation, a graphical user interface  was
-implemented which allows the operator to check the performance of the
+Additionally a graphical user interface was developed to aid user
+operation which allows the operator to check the performance of the
 guidance system in real-time.
 
 \subsection{Plant Segmentation}
@@ -273,14 +273,30 @@ were hardware downscaled to a resolution of 320x240 and 16
 frames-per-second. After capturing an image, the image matrix was
 transformed from the Red-Green-Blue (RGB) color-space to the
 de-correlated Hue-Saturation-Value (HSV) color-space in order to
-simplify band-pass filtering operations (\ref{eq:rgb2hsv}).
+simplify band-pass filtering operations (Equations \ref{eq:rgb2h} to \ref{eq:rgb2v}).
 
 \begin{equation}
-  \left[
-    {\bf X} + {\rm a} \ \geq\ 
-    \underline{\hat a} \sum_i^N \lim_{x \rightarrow k} \delta C
-  \right]
-  \label{eq:rgb2hsv}
+  H_{i,j} =
+  \begin{cases}
+    60 * \frac{G-B}{V_{i,j}-min(R_{i,j},G_{i,j},B_{i,j})}  & \quad \text{if } V = R \\
+    120 + 60 * \frac{B-R}{V_{i,j}-min(R_{i,j},G_{i,j},B_{i,j})}  & \quad \text{if } V = G \\
+    240 + 60 * \frac{R-G}{V_{i,j}-min(R_{i,j},G_{i,j},B_{i,j})}  & \quad \text{if } V = B \\
+  \end{cases}
+  \label{eq:rgb2h}
+\end{equation}
+
+\begin{equation}
+  S_{i,j} = 
+  \begin{cases}
+    \frac{V_{i,j}-min(R_{i,j},G_{i,j},B_{i,j})}{V_{i,j}}  & \quad \text{if } V \neq 0 \\
+    0  & \quad \text{else}\\
+  \end{cases}
+  \label{eq:rgb2s}
+\end{equation}
+
+\begin{equation}
+  V_{i,j} = max(R_{i,j},G_{i,j},B_{i,j})
+  \label{eq:rgb2v}
 \end{equation}
 
 After transforming the image to the HSV color-space, a band-pass plant
@@ -297,9 +313,9 @@ cyan-blue region. This change did not have any noticeable negative
 impact on performance due to the relative lack of blue-tones in soil.
 
 \begin{equation}
-f(n) =
+BPPD_{i,j} =
   \begin{cases}
-    1  & \quad \text{if } S \bigwedge V \bigwedge H\text{ }\\
+    1  & \quad \text{if } H_{min}< S_{i,j} <H_{max}(S) \bigwedge P_{k}(S)< S_{i,j} <P_{l}(S) \bigwedge P_{m}(V)< V_{i,j} <P_{n}(V)\text{ }\\
     0  & \quad \text{else}\\
   \end{cases}
   \label{eq:bppd}
@@ -319,10 +335,11 @@ kernel was applied to the BPPD mask to reduce any remaining noise
 while preserving the structure of crop foliage:
 
 \begin{equation}
-M = \begin{bmatrix}
-       \frac{5}{6} & \frac{1}{6} & 0           \\[0.3em]
-       \frac{5}{6} & 0           & \frac{1}{6} \\[0.3em]
-       0           & \frac{5}{6} & \frac{1}{6}
+M = BPPD \otimes
+\begin{bmatrix}
+       1 & 1 & 1\\[0.3em]
+       1 & 1 & 1 \\[0.3em]
+       1 & 1 & 1
      \end{bmatrix}
 \label{eq:morph_opening}
 \end{equation}
@@ -356,7 +373,7 @@ resulting in an array (C) representing the lateral distribution of
 plant foliage within the image. 
 
 \begin{equation}
-  \displaystyle\sum_{i=1}^{10} t_i
+  C_{i} = \displaystyle\sum_{j=1}^{H} M_{i,j}
   \label{eq:col_sum}
 \end{equation}
 \begin{flushleft}
@@ -371,10 +388,11 @@ was estimated by applying a high-pass filter to select for indices
 which are significantly greater than others: 
 
 \begin{equation}
-  \left[
-    {\bf X} + {\rm a} \ \geq\ 
-    \underline{\hat a} \sum_i^N \lim_{x \rightarrow k} \delta C
-  \right]
+  p_{i} =
+  \begin{cases}
+    i & \quad if C_{i} \geq P_{n}(C) \\
+    0 & \quad else \\
+  \end{cases}
   \label{eq:p_threshold}
 \end{equation}
 \begin{flushleft}
@@ -407,16 +425,17 @@ where N is the number of elements in p, and x is position the estimated centroid
 
 To compensate for errors in the detection process inherent to single
 camera systems, the row centroid estimation process was repeated for
-images, producing two column summation arrays (C1 and C2) and two
+each image, producing two column summation arrays (C1 and C2) and two
 estimated row centroids (x1 and x2). After calculating the estimated
 row centroid for each camera, the centroid and column summation values
 are compared to determine the final estimated offset of the crop row:
 
 \begin{equation}
-  \left[
-    {\bf X} + {\rm a} \ \geq\ 
-    \underline{\hat a} \sum_i^N \lim_{x \rightarrow k} \delta C
-  \right]
+  e = 
+  \begin{cases}
+    mean(x_{1},x_{2})  & \quad if |x_{1}-x_{2}| \leq \epsilon\\
+    argmax(C_{1},C_{2})  & \quad \text{else}\\
+  \end{cases}
   \label{eq:camera_selection}
 \end{equation}
 \begin{flushleft}

@@ -311,6 +311,13 @@ experienced significant blue-shifting of crop foliage in very bright
 or low light, so the upper threshold for hue was set well into the
 cyan-blue region. This change did not have any noticeable negative
 impact on performance due to the relative lack of blue-tones in soil.
+\begin{equation}
+  P_{n}(C) = C_{n}+ (n \text{mod} 1) \times (C_{\lfloor n \rfloor + 1}-C_{n})
+  \label{eq:percentile}
+\end{equation}
+\begin{flushleft}
+where n is the percentile of the set C.
+\end{flushleft}
 
 \begin{equation}
 BPPD_{i,j} =
@@ -390,7 +397,7 @@ which are significantly greater than others:
 \begin{equation}
   p_{i} =
   \begin{cases}
-    i & \quad if C_{i} \geq P_{n}(C) \\
+    i & \quad if C_{i} \geq P_{\alpha}(C) \\
     0 & \quad else \\
   \end{cases}
   \label{eq:p_threshold}

@@ -27,8 +27,8 @@ resolution was mounted to the front of a New Holland T5050 (New
 Holland Agriculture, Turin, Italy) tractor in-line with a crop row to
 obtain a video stream of the plants passing beneath the equipment. The
 camera lens had an aperture of 2.4, a 6 mm focal point, and a 4:3
-aspect ratio, which translated to a 43$^irc{}$ horizontal field of view and
-32.9$^circ{}$ vertical field of view. For the specifications, the camera
+aspect ratio, which translated to a 43$^{\circ}$ horizontal field of view and
+32.9$^{\circ}$ vertical field of view. For the specifications, the camera
 provided approximately 1.15 mm/px resolution when mounted 1.0 m above
 the ground and oriented orthogonally to the testing surface. In order
 to maximize the overlap between consecutive images at higher travel
@@ -44,7 +44,7 @@ rated to a minimum illumination of 0.5 Lux.
 In order to determine the ground speed of the vehicle using
 computer-vision, an application was developed with the Python OpenCV
 platform using the SURF (Speeded Up Robust Features) keypoint matching
-algorithm (Bay, 2006). The application was developed to run on an
+algorithm \cite{bay}. The application was developed to run on an
 Intel i7 powered VMC3501-K (Nexcomm, Taiwan). A Trimble AgGPS RTK
 receiver position directly above the camera was used to obtain
 geographic longitude and latitude, time, and GNSS signal quality for
@@ -82,7 +82,6 @@ specified contrast limit of 40, those pixels are clipped and
 distributed uniformly to other bins before applying histogram
 equalization. After equalization, to remove artifacts in tile borders,
 bilinear interpolation is applied.
-
 % --- END Image Processing --- %
 
 % --- BEGIN Keypoint Matching --- %
@@ -107,30 +106,59 @@ good match and is stored to set Q.
   \label{fig:keypoint_tracking}
 \end{figure}
 
-For each good match in set Q, the key point’s coordinates in M1 and
-M2, i.e. (x1,y1) and (x1,y1), are projected from pixel space to
-real-space with the following transformation:
+The true position of keypoints identified by the algorithm is
+determined by the perspective of the imaging device. 
 
 \begin{equation}
-f = 2.0 * tan(\alpha / 2.0)
-\lambda = W / f
-K = 0.95
-r = sqrt(X^2 + Y^2)
-Y = y * K * (1 + c1*r^2 + c2*r^4 + c3*r^6)
-X = x * K * (1 + c1*r^2 + c2*r^4 + c3*r^6)
+\centering
+\lambda = \frac{W}{2.0 * tan(\frac{\alpha}{2})}
+\label{eq:geometric}
 \end{equation}
-Where $\alpha$ is the horizontal field-of-view (0.75 radians), W is the image
-width (640 px), S is the subject depth  (1000 mm), and $\rho$ is the pitch
+\begin{flushleft}
+Where f is the focal length, W is the width of the image, $\alpha$ is
+the field of view, K is the zoom-factor, S is the subject depth  (1000
+mm), $\rho$ is the pitch
 (0.0 radians).
+\end{flushleft}
+
+For each pair of matched keypoints $M_{1}$ and $M_{2}$,
+i.e. $(x_{1},y_{1})$ and $(x_{2},y_{2})$, their coordinates are
+projected from pixel-space to real-space with the following
+transformation to correct for lens and perspective distortion.
+
+\begin{equation}
+r = sqrt(x^2 + y^2)
+\end{equation}
+
+\begin{equation}
+\binom{X}{Y} = K \times \binom{x}{y}
+\begin{pmatrix}
+  c_{1} & c_{1} & \cdots & c_{n}
+\end{pmatrix}
+\begin{pmatrix}
+  1 \\
+  r^2 \\
+  \vdots \\
+  r^{2n}
+\end{pmatrix}
+\label{eq:undistort}
+\end{equation}
+\begin{flushleft}
+where $c_{i}$ are the transform coefficients deteremined by calibration.
+\end{flushleft}
 
 The velocity of each keypoint between the two consecutive images was
-calculated by taking the hypotenuse between the coordinates in M1 and
-M2 divided by the rate of image capture (f):
+calculated by taking the change in distance between the coordinates in $M_{1}$ and
+$M_{2}$ divided by the rate of image capture (f):
 
 \begin{equation}
-v = f * sqrt((X2 - X1)^2 + (Y2 - Y1)^2)
-\theta = arctan2((X2 - X1), (Y2 - Y1))
+\binom{v}{\theta} = \binom{\frac{\sqrt((X_{2} - X_{1})^2 + (Y_{2} - Y_{1})^2)}{f}}{arctan2(X_{2} - X_{1}, Y_{2} - Y_{1})}
+\label{eq:pts2vector}
 \end{equation}
+\begin{flushleft}
+Where v is the velocity, and $\theta$ is the direction, relative to
+the cameras orientation along the horizontal centerline.
+\end{flushleft}
 
 The set of vectors was filtered by clustering by histogram and
 selecting for dominant vector angle within a tolerance of 0.05
@@ -155,45 +183,64 @@ Hay Grass
 Mature Soy
 For each surface type, five (5) videos were collected
 0 km/h to 18 km/h to 0 km/h in ~45 seconds
+
+\begin{table}[h]
+  \centering
+  \caption{RMSE and 95$^{th}$ Percentile
+    with respect to crop-stage.} 
+  \scalebox{0.6}{
+    \begin{tabular}{lcccccccc}
+      \toprule
+      \multirow{2}[10]{*} & \multicolumn{4}{c}{RMSE (cm)} &
+      \multicolumn{4}{c}{95$^{th}$ Percentile (cm)} \\
+      \cmidrule(1r){2-5} \cmidrule(1r){6-9}  
+      & $\le$10 cm & 10-15 cm & 15-20 cm & $\ge$20 cm & $\le$10 cm &
+      10-15 cm & 15-20 cm & $\ge$20 cm \\
+      \midrule
+      Computer-vision & 0.50 $\pm$ 6.43 & 19.36 $\pm$ 8.11 & 63.69 $\pm$ 15.01 & 65.67 $\pm$ 16.49 & 38.86 $\pm$ 0.23 & 38.9 $\pm$ 0.29 & 145.55 $\pm$ 15.61 & 143.69 $\pm$ 16.17 \\
+      Guiding rods & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07 & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 & 133.34 $\pm$ 18.60 & 131.83 $\pm$ 15.94 \\
+      \bottomrule  
+    \end{tabular}}
+  \label{table:trials}
+\end{table}
 % --- END Trials --- %
 
 % --- BEGIN Results --- %
 \section{Results}
-\lipsum[1]
 
 \begin{table}[h]
   \centering
   \caption{RMSE and 95$^{th}$ Percentile
-    with respect to crop-stage (cm).} 
+    with respect to crop-stage.} 
   \scalebox{0.6}{
     \begin{tabular}{lcccccccc}
       \toprule
-      \multirow{2}[10]{*} & \multicolumn{4}{c}{RMSE (cm)} &
-      \multicolumn{4}{c}{95$^{th}$ Percentile (cm)} \\
-      \cmidrule(1r){2-5} \cmidrule(1r){6-9}  
-      & $\le$10 & 10-15 & 15-20 & $\ge$20 & $\le$10 & 10-15 & 15-20 & $\ge$20 \\
+      \multirow{2}[10]{*} & \multicolumn{7}{c}{RMSE (cm)} \\
+      \cmidrule(1r){2-8}
+      & 0-3 & 3-6 km/h & 6-9 km/h & 6-12 & 12-15 &
+      15-18 km/h & total \\
       \midrule
-      Computer-vision & 0.50 $\pm$ 6.43 & 19.36 $\pm$ 8.11 & 63.69 $\pm$ 15.01 & 65.67 $\pm$ 16.49 & 38.86 $\pm$ 0.23 & 38.9 $\pm$ 0.29 & 145.55 $\pm$ 15.61 & 143.69 $\pm$ 16.17 \\
-      Guiding rods: & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07 & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 & 133.34 $\pm$ 18.60 & 131.83 $\pm$ 15.94 \\
-      \bottomrule  
-    \end{tabular}}
-  \label{table:travel_speed}
-\end{table}
-
-\begin{table}[h]
-  \centering
-  \caption{RMSE and 95$^{th}$ Percentile
-    with respect to travel speed (km/h).} 
-  \scalebox{0.6}{
-    \begin{tabular}{lcccccccc}
-      \toprule
-      \multirow{2}[10]{*} & \multicolumn{4}{c}{RMSE (cm)} &
-      \multicolumn{4}{c}{95$^{th}$ Percentile (cm)} \\
-      \cmidrule(1r){2-5} \cmidrule(1r){6-9}  
-      & 6 & 8 & 10 & 12 & 6 & 8 & 10 & 12 \\
-      \midrule
-      Computer-vision & 0.50 $\pm$ 6.43 & 19.36 $\pm$ 8.11 & 63.69 $\pm$ 15.01 & 65.67 $\pm$ 16.49 & 38.86 $\pm$ 0.23 & 38.9 $\pm$ 0.29 & 145.55 $\pm$ 15.61 & 143.69 $\pm$ 16.17 \\
-      Guiding rods: & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07 & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 & 133.34 $\pm$ 18.60 & 131.83 $\pm$ 15.94 \\
+      pavement & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07
+      & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 &
+      133.34 $\pm$ 18.60  \\ 
+      gravel & 0.50 $\pm$ 6.43 & 19.36 $\pm$ 8.11 & 63.69 $\pm$ 15.01
+      & 65.67 $\pm$ 16.49 & 38.86 $\pm$ 0.23 & 38.9 $\pm$ 0.29 &
+      145.55 $\pm$ 15.61 \\ 
+      grass & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07
+      & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 &
+      133.34 $\pm$ 18.60  \\
+      hay & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07
+      & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 &
+      133.34 $\pm$ 18.60 \\ 
+      soy & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07
+      & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 &
+      133.34 $\pm$ 18.60 \\ 
+      soil & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07
+      & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 &
+      133.34 $\pm$ 18.60 \\ 
+      corn residue & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07
+      & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 &
+      133.34 $\pm$ 18.60 \\ 
       \bottomrule  
     \end{tabular}}
   \label{table:travel_speed}

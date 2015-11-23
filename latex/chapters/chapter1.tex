@@ -1,9 +1,11 @@
 \begin{abstract}
-For organic row crops, frequent cultivation is required for weed
-control, and these implements require precise guidance systems to
-assure proper positioning of the working tools.
-Legacy systems have made use of mechanical guiding rods, but these
-systems perform poorly in the earliest stages of crop growth.
+Management of organic row crops requires frequent in-field
+operations. Depending on the extent of soil conservation practices, 
+weed control necessitates tillage operations. Strip-tillage and
+cultivator implements require precise guidance systems to
+assure proper positioning of the working tools. Legacy systems have
+made use of mechanical guiding rods, however such
+systems perform poorly during the earliest stages of crop growth.
 Modern techniques based on RTK GPS are available commercially but are
 prohibitively expensive for small-scale operations.
 Therefore, the objective of this study was to develop a low-cost CCD 
@@ -83,12 +85,10 @@ reduces the effectiveness when differentiating between color hues.
 Several different image filtering methods can be utilized for
 segmentation of plants from soil. Using unfiltered RGB data is not
 ideal due to the high correlation between the three
-channels. Therefore, conversion to an alternate color-space is
-necessary for plant identification. 
-
-An approach proposed by Meyer et al. (1998) demonstrates a contrast
-filter known as Excess Green (ExG) calculated using the following
-equation:
+channels. Therefore, conversion to an alternate color-space is often
+advantagous for plant identification. An approach proposed by Meyer et
+al. (1998) demonstrates a contrast filter known as Excess Green (ExG)
+calculated using the following equation:
 
 \begin{equation}
   \left[
@@ -96,7 +96,9 @@ equation:
     \underline{\hat a} \sum_i^N \lim_{x \rightarrow k} \delta C
   \right]
 \end{equation}
-where nx = image width (pixels); ny = image height (pixels).
+\begin{flushleft}
+where $n_{x}$ = image width (pixels); $n_{y}$ = image height (pixels).
+\end{flushleft}
 
 The transformed image is passed through a low-pass filter to remove
 bright spots before a constant threshold value of 20 on a scale of 0
@@ -193,8 +195,6 @@ shifting the tractor. To address this requires either removing tools
 or dramatically increasing the weight of the tractor, both of which
 are undesirable to the farmer. Stabilizer steering has applications in
 heavier tillage.
-
-
 
 A hydraulic hitch positional control system can be expressed as a
 linear system. The output is the lateral error of the vehicle relative
@@ -297,15 +297,16 @@ cyan-blue region. This change did not have any noticeable negative
 impact on performance due to the relative lack of blue-tones in soil.
 
 \begin{equation}
-  \left[
-    {\bf X} + {\rm a} \ \geq\ 
-    \underline{\hat a} \sum_i^N \lim_{x \rightarrow k} \delta C
-  \right]
+f(n) =
+  \begin{cases}
+    1  & \quad \text{if } S \bigwedge V \bigwedge H\text{ }\\
+    0  & \quad \text{else}\\
+  \end{cases}
   \label{eq:bppd}
 \end{equation}
-where Hmin=45 lower hue threshold (yellow-green), Hmax=105 upper hue
-threshold (blue-green).
-
+\begin{flushleft}
+where $H_{min}=45$ (yellow-green), $H_{max}=105$ (blue-green).
+\end{flushleft}
 
 The BPPD filter utilizes the linear interpolation percentile function
 to calculate the upper and lower thresholds of the Value and
@@ -318,13 +319,16 @@ kernel was applied to the BPPD mask to reduce any remaining noise
 while preserving the structure of crop foliage:
 
 \begin{equation}
-  \left[
-    {\bf X} + {\rm a} \ \geq\ 
-    \underline{\hat a} \sum_i^N \lim_{x \rightarrow k} \delta C
-  \right]
-  \label{eq:morph_opening}
+M = \begin{bmatrix}
+       \frac{5}{6} & \frac{1}{6} & 0           \\[0.3em]
+       \frac{5}{6} & 0           & \frac{1}{6} \\[0.3em]
+       0           & \frac{5}{6} & \frac{1}{6}
+     \end{bmatrix}
+\label{eq:morph_opening}
 \end{equation}
+\begin{flushleft}
 where K is a 3 by 3 kernel.
+\end{flushleft}
 
 This three step process is computationally non-intensive, yet produces
 sufficient segmentation in diverse lighting conditions. Notably, the
@@ -352,13 +356,12 @@ resulting in an array (C) representing the lateral distribution of
 plant foliage within the image. 
 
 \begin{equation}
-  \left[
-    {\bf X} + {\rm a} \ \geq\ 
-    \underline{\hat a} \sum_i^N \lim_{x \rightarrow k} \delta C
-  \right]
+  \displaystyle\sum_{i=1}^{10} t_i
   \label{eq:col_sum}
 \end{equation}
+\begin{flushleft}
 where H=240
+\end{flushleft}
 
 Indices of the C-array with low values suggest bare-soil, moderate
 values suggest sparsely distributed weeds, and higher values suggest
@@ -374,7 +377,9 @@ which are significantly greater than others:
   \right]
   \label{eq:p_threshold}
 \end{equation}
+\begin{flushleft}
 where $\alpha$=0.95
+\end{flushleft}
 
 The array (p) consists of all indices of the image which are most
 likely to represent the crop row. The estimated centroid of the crop
@@ -389,7 +394,9 @@ corresponding column summation:
   \right]
   \label{eq:centroid}
 \end{equation}
+\begin{flushleft}
 where N is the number of elements in p, and x is position the estimated centroid in pixels.
+\begin{flushleft}
 
 \begin{figure}
   \centering
@@ -412,8 +419,10 @@ are compared to determine the final estimated offset of the crop row:
   \right]
   \label{eq:camera_selection}
 \end{equation}
+\begin{flushleft}
 where E is the maximum acceptable error tolerance, W is the width of
 the camera in pixels. 
+\end{flushleft}
 
 This approach prioritizes centroid estimations which are in agreeance
 and in the event of disagreeance between the two cameras the dominant
@@ -433,8 +442,10 @@ results in a resolution of 0.2 cm/px.
   \right]
   \label{eq:px2mm}
 \end{equation}
+\begin{flushleft}
 where fov is the field-of-view of the camera (in centimeters), W is
 the camera width (in pixels).
+\end{flushleft}
 
 \subsection{Electro-hydraulic Control}
 The rotary stabilizer mechanism was operated via bang-bang hydraulic
@@ -449,14 +460,13 @@ implemented. Coefficients were initially chosen to provide similar
 response to that of the guiding rods and were subsequently modified by
 trial and error.
 \begin{equation}
-  \left[
-    {\bf X} + {\rm a} \ \geq\ 
-    \underline{\hat a} \sum_i^N \lim_{x \rightarrow k} \delta C
-  \right]
+    u = K_{P}e(t) + K_{I}\sum_i^N \lim_{x \rightarrow k} \delta C + K_{D}\sum_i^N \lim_{x \rightarrow k} \delta C
   \label{eq:pid}
 \end{equation}
+\begin{flushleft}
 where $K_{P}=1.0$, $K_{I}=4.0$, $K_{D}=0.5$, $N=15$ is the number of integral samples,
 $M=3$ is the number of differential samples.
+\end{flushleft}
 
 \begin{figure}
   \centering
@@ -551,32 +561,44 @@ operation, trials were conducted at four approximate travel speeds: 6,
 automatic speed controller of the vehicle.
 
 \section{Results}
-\begin {table}
-  \caption{RMSE and 95th percentile with respect to travel speed.}
+\begin{table}[h]
   \centering
-  \begin{tabular}{l*{6}{c}r}
-    Team              & P & W & D & L & F  & A & Pts \\
-    \hline
-    Manchester United & 6 & 4 & 0 & 2 & 10 & 5 & 12  \\
-    Celtic            & 6 & 3 & 0 & 3 &  8 & 9 &  9  \\
-    Benfica           & 6 & 2 & 1 & 3 &  7 & 8 &  7  \\
-    FC Copenhagen     & 6 & 2 & 1 & 3 &  5 & 8 &  7  \\
-  \end{tabular}
+  \caption{RMSE and 95$^{th}$ Percentile
+    with respect to crop-stage.} 
+  \scalebox{0.6}{
+    \begin{tabular}{lcccccccc}
+      \toprule
+      \multirow{2}[10]{*} & \multicolumn{4}{c}{RMSE (cm)} &
+      \multicolumn{4}{c}{95$^{th}$ Percentile (cm)} \\
+      \cmidrule(1r){2-5} \cmidrule(1r){6-9}  
+      & $\le$10 cm & 10-15 cm & 15-20 cm & $\ge$20 cm & $\le$10 cm &
+      10-15 cm & 15-20 cm & $\ge$20 cm \\
+      \midrule
+      Computer-vision & 0.50 $\pm$ 6.43 & 19.36 $\pm$ 8.11 & 63.69 $\pm$ 15.01 & 65.67 $\pm$ 16.49 & 38.86 $\pm$ 0.23 & 38.9 $\pm$ 0.29 & 145.55 $\pm$ 15.61 & 143.69 $\pm$ 16.17 \\
+      Guiding rods & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07 & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 & 133.34 $\pm$ 18.60 & 131.83 $\pm$ 15.94 \\
+      \bottomrule  
+    \end{tabular}}
   \label{table:travel_speed}
 \end{table}
 
-\begin {table}
-  \caption{RMSE and 95th percentile with respect to crop stage.}
+\begin{table}[h]
   \centering
-  \begin{tabular}{l*{6}{c}r}
-    Team              & P & W & D & L & F  & A & Pts \\
-    \hline
-    Manchester United & 6 & 4 & 0 & 2 & 10 & 5 & 12  \\
-    Celtic            & 6 & 3 & 0 & 3 &  8 & 9 &  9  \\
-    Benfica           & 6 & 2 & 1 & 3 &  7 & 8 &  7  \\
-    FC Copenhagen     & 6 & 2 & 1 & 3 &  5 & 8 &  7  \\
-  \end{tabular}
-  \label{table:crop_stage}
+  \caption{RMSE and 95$^{th}$ Percentile
+    with respect to travel speed.} 
+  \scalebox{0.6}{
+    \begin{tabular}{lcccccccc}
+      \toprule
+      \multirow{2}[10]{*} & \multicolumn{4}{c}{RMSE (cm)} &
+      \multicolumn{4}{c}{95$^{th}$ Percentile (cm)} \\
+      \cmidrule(1r){2-5} \cmidrule(1r){6-9}  
+      & 6 km/h & 8 km/h & 10 km/h & 12 km/h & 6 km/h & 8 km/h & 10
+      km/h & 12 km/h \\
+      \midrule
+      Computer-vision & 0.50 $\pm$ 6.43 & 19.36 $\pm$ 8.11 & 63.69 $\pm$ 15.01 & 65.67 $\pm$ 16.49 & 38.86 $\pm$ 0.23 & 38.9 $\pm$ 0.29 & 145.55 $\pm$ 15.61 & 143.69 $\pm$ 16.17 \\
+      Guiding rods & 21.33 $\pm$ 6.78 & 20.92 $\pm$ 7.97 & 66.33 $\pm$ 16.07 & 66.15 $\pm$ 16.71 & 38.39 $\pm$ 0.81 & 38.35 $\pm$ 0.79 & 133.34 $\pm$ 18.60 & 131.83 $\pm$ 15.94 \\
+      \bottomrule  
+    \end{tabular}}
+  \label{table:travel_speed}
 \end{table}
 
 \section{Discussion}

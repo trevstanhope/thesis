@@ -1,5 +1,21 @@
 \begin{abstract}
-\lipsum[1]
+Applications of computer-vision in agriculture have significant
+potential for improving the precision and efficiency of several
+in-field operations, including spraying and cultivation.
+Systems which utilize imaging for hydraulic
+control, such as for inter-row cultivation, can be used to obtain
+additional state information which may be used to positively affect the system's
+performance. Of primary interest is estimating the
+motion of vehicle-mounted orthographic cameras in order to obtain
+ground-speed and orientation feedback. We propose a feature-based
+method for real-time motion estimation of agricultural vehicles and
+implements via image analysis without the need for RTK GPS. The SURF,
+SIFT, and ORB feature-descriptor algorithms were evaluated for their
+suitability on varying surfaces for speeds up 18 km/h. Keypoint
+matching was conducted using knn-matching with cross-checking and the
+computer-vision estimation was compared against RTK
+GPS. Possible applications are discussed, including a model for
+orientation compensation of pivoting-hitch cultivator steering systems.
 \end{abstract}
 
 \section{Introduction}
@@ -128,6 +144,7 @@ transformation to correct for lens and perspective distortion.
 
 \begin{equation}
 r = sqrt(x^2 + y^2)
+\label{eq:hypothenus}
 \end{equation}
 
 \begin{equation}
@@ -150,9 +167,26 @@ where $c_{i}$ are the transform coefficients deteremined by calibration.
 The velocity of each keypoint between the two consecutive images was
 calculated by taking the change in distance between the coordinates in $M_{1}$ and
 $M_{2}$ divided by the rate of image capture (f):
+\begin{equation}
+  \text{atan2}(y,x) = 
+  \begin{cases}
+    \text{arctan}(\frac{y}{x})  & \quad \text{if } x \ge 0  \\
+    \text{arctan}(\frac{y}{x}) + \pi  & \quad \text{if } x \le 0
+    \text{ and } y \ge 0 \\
+    \text{arctan}(\frac{y}{x}) - \pi  & \quad \text{if } x \le 0
+    \text{ and } y < 0  \\
+    +\frac{\pi}{2}  & \quad \text{if } x = 0
+    \text{ and } y > 0  \\
+    -\frac{\pi}{2}  & \quad \text{if } x = 0
+    \text{ and } y < 0 \\
+    \text{undefined}  & \quad \text{if } x = 0
+    \text{ and } y = 0  \\
+  \end{cases}
+\label{eq:atan2}
+\end{equation}
 
 \begin{equation}
-\binom{v}{\theta} = \binom{\frac{\sqrt((X_{2} - X_{1})^2 + (Y_{2} - Y_{1})^2)}{f}}{arctan2(X_{2} - X_{1}, Y_{2} - Y_{1})}
+\binom{v}{\theta} = \binom{\frac{\sqrt((X_{2} - X_{1})^2 + (Y_{2} - Y_{1})^2)}{f}}{\text{arctan2}(X_{2} - X_{1}, Y_{2} - Y_{1})}
 \label{eq:pts2vector}
 \end{equation}
 \begin{flushleft}

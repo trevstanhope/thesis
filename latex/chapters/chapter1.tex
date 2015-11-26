@@ -197,6 +197,11 @@ or dramatically increasing the weight of the tractor, both of which
 are undesirable to the farmer. Stabilizer steering has applications in
 heavier tillage.
 
+\begin{equation}
+  D = F_{i} \left[ A + B(S) + C(S^2) \right] W * d
+  \label{eq:soil_resistance}
+\end{equation}
+
 A hydraulic hitch positional control system can be expressed as a
 linear system. The output is the lateral error of the vehicle relative
 to the crop row and the input is the position of the steering
@@ -205,6 +210,18 @@ and it is assumed the angular speed is constant and travel speed is
 within acceptable bounds. To control this system, the voltage signal
 to the electrohydraulic steering can be modulated to adjust the
 lateral position of the cultivator.
+
+\begin{equation}
+  F_x = V - \rho\theta(sin \beta sin \alpha \sin \theta + cos \alpha +
+  cos \theta)
+  \label{eq:horizontal_velocity}
+\end{equation}
+\begin{flushleft}
+where $V_x$ is the velocity in the x-axis, $\theta$ is the yaw of the
+disc, $\alpha$ is the pitch of the
+disc, $\beta$ is the roll of the disc, $\rho$ is the distance from
+the axis of rotation of the disc to the given point of the working surface.
+\end{flushleft}
 
 \section{Methodology}
 For field evaluation, a twelve row Hiniker cultivator equipped with a
@@ -465,7 +482,7 @@ This is what it looks like:
 
 \begin{figure}
   \centering
-  \includegraphics[scale=0.1]{row_estimation.jpg}
+  % \includegraphics[scale=0.4]{row_estimation.jpg}
   \caption{Demonstration of offset detection.}
   \label{fig:row_estimation}
 \end{figure}
@@ -494,7 +511,7 @@ $M=3$ is the number of differential samples.
 
 \begin{figure}
   \centering
-  \includegraphics[scale=0.1]{stabilizers.jpg}
+  \includegraphics[scale=0.1,natwidth=610,natheight=642]{stabilizers.jpg}
   \caption{Rotating stabilizers}
   \label{fig:stabilizers}
 \end{figure}
@@ -538,7 +555,7 @@ requirements.
 
 \begin{figure}
   \centering
-  \includegraphics[scale=0.3]{signal_conditioning.png}
+  \includegraphics[scale=0.3,natwidth=610,natheight=642]{signal_conditioning.png}
   \caption{Rotating stabilizers}
   \label{fig:signal_conditioning}
 \end{figure}
@@ -604,8 +621,7 @@ speed controller of the vehicle.
       \multirow{2}[10]{*} & \multicolumn{4}{c}{RMSE (cm)} &
       \multicolumn{4}{c}{95$^{th}$ Percentile (cm)} \\
       \cmidrule(1r){2-5} \cmidrule(1r){6-9}  
-      & $\le$10 cm & 10-15 cm & 15-20 cm & $\ge$20 cm & $\le$10 cm &
-      10-15 cm & 15-20 cm & $\ge$20 cm \\
+      & $\le$10 cm & 10-15 cm & 15-20 cm & $\ge$20 cm & $\le$10 cm & 10-15 cm & 15-20 cm & $\ge$20 cm \\
       \midrule
       Computer-vision & 0.50 $\pm$ 0.1 & 19.36 $\pm$ 0.1 & 63.69 $\pm$ 0.1 & 65.67 $\pm$ 0.1 & 38.86 $\pm$ 0.1 & 38.9 $\pm$ 0.1 & 145.55 $\pm$ 0.1 & 143.69 $\pm$ 0.1 \\
       Guiding rods & 21.33 $\pm$ 0.1 & 20.92 $\pm$ 0.1 & 66.33 $\pm$ 0.1 & 66.15 $\pm$ 0.1 & 6.53 $\pm$ 0.1 & 6.00 $\pm$ 0.1 & 3.84 $\pm$ 0.1 & 3.50 $\pm$ 0.1 \\
@@ -616,22 +632,20 @@ speed controller of the vehicle.
 
 \begin{table}[h]
   \centering
-  \caption{RMSE and 95$^{th}$ Percentile
-    with respect to travel speed.} 
+  \caption{RMSE and 95$^{th}$ Percentile with respect to travel speed.}
   \scalebox{0.6}{
     \begin{tabular}{lcccccccc}
       \toprule
       \multirow{2}[10]{*} & \multicolumn{4}{c}{RMSE (cm)} &
       \multicolumn{4}{c}{95$^{th}$ Percentile (cm)} \\
       \cmidrule(1r){2-5} \cmidrule(1r){6-9}  
-      & 6 km/h & 8 km/h & 10 km/h & 12 km/h & 6 km/h & 8 km/h & 10
-      km/h & 12 km/h \\
+      & 6 km/h & 8 km/h & 10 km/h & 12 km/h & 6 km/h & 8 km/h & 10 km/h & 12 km/h \\
       \midrule
       Computer-vision & 1.78 $\pm$ 0.1 & 1.9 $\pm$ 0.1 & 2.3 $\pm$ 0.1 & 2.8 $\pm$ 0.1 & 38.86 $\pm$ 0.1 & 38.9 $\pm$ 0.1 & 145.55 $\pm$ 0.1 & 143.69 $\pm$ 0.1 \\
       Guiding rods & 21.33 $\pm$ 0.1 & 20.92 $\pm$ 0.1 & 66.33 $\pm$ 0.1 & 66.15 $\pm$ 0.1 & 38.39 $\pm$ 0.1 & 38.35 $\pm$ 0.1 & 133.34 $\pm$ 0.1 & 4.0 $\pm$ 0.1 \\
       \bottomrule  
     \end{tabular}}
-  \label{table:travel_speed}
+ \label{table:travel_speed}
 \end{table}
 
 \section{Discussion}

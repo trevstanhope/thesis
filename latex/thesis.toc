@@ -14,11 +14,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3.1}Plant Segmentation}{7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.2}Row Estimation}{8}
+\contentsline {subsection}{\numberline {2.3.2}Row Estimation}{9}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3.3}Electro-hydraulic Control}{10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.4}Calibration}{11}
+\contentsline {subsection}{\numberline {2.3.4}Calibration}{12}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3.5}Field Trials}{12}
 \defcounter {refsection}{0}\relax 
@@ -46,13 +46,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.3.3}Keypoint Matching}{4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.4}Field Trials}{5}
+\contentsline {subsection}{\numberline {3.3.4}Field Trials}{6}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.4}Results}{6}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.5}Discussion}{6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.5.1}Applications}{6}
+\contentsline {subsection}{\numberline {3.5.1}Applications}{7}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.6}Conclusion}{7}
 \defcounter {refsection}{0}\relax 

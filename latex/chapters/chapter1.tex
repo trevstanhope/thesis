@@ -62,13 +62,20 @@ height.
 
 \section{Literature Review}
 Demand for high precision tractor control has produced significant
-research interest over the past two decades. Prior studies by Hague et
+research interest over the past two decades. Studies by Hague et
 al., Kise et al., and Astrand et al. have demonstrated that by 
 capturing a video stream of the crop rows passing by tractor, the 
 lateral offset of vehicle relative to the crop rows can be estimated
-with a high degree of consistency. Several different computer-vision
-methodologies have been proposed for detecting the offset of the crop
-row: Stereo-vision, distribution of crop foliage, feature-based extraction, 
+with a high degree of consistency. The lateral offset detected in this manner
+has also been shown to be an effective input for actuating agricultural 
+implements.
+
+Several different computer-vision methodologies have been proposed for 
+detecting the offset of the crop row such as stereo-vision, distribution
+of crop foliage, Hough transform, and band-pass analysis.
+
+In order to identify the location of the crop row, t
+
 In order to identify the location of the crop row, the distribution of
 plant foliage within the captured images must be determined, a process
 known as segmentation. During this process, varying ambient light
@@ -83,18 +90,15 @@ lighting results in greater difference in the intensity of pixels and
 reduces the effectiveness when differentiating between color hues.
  
 Several different image filtering methods can be utilized for
-segmentation of plants from soil. Using unfiltered RGB data is not
-ideal due to the high correlation between the three
+segmentating of plants from soil. Using unfiltered RGB data is not
+commonly employed due to the high correlation between the three
 channels. Therefore, conversion to an alternate color-space is often
 advantagous for plant identification. An approach proposed by Meyer et
 al. (1998) demonstrates a contrast filter known as Excess Green (ExG)
 calculated using the following equation:
 
 \begin{equation}
-  \left[
-    {\bf X} + {\rm a} \ \geq\ 
-    \underline{\hat a} \sum_i^N \lim_{x \rightarrow k} \delta C
-  \right]
+    ExG = \displaystyle\sum_{j=1}^{H} \displaystyle\sum_{i=1}^{W} \frac{G_{i,j}-R_{i,j}}{R_{i,j} + G_{i,j} + B_{i,j}}
 \end{equation}
 \begin{flushleft}
 where $n_{x}$ = image width (pixels); $n_{y}$ = image height (pixels).
@@ -112,7 +116,7 @@ Alternative approaches have utilized HSV transform
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{hsv.jpg}
-  \caption{HSV Transform}
+  \caption{HSV Transform (360 degree).}
   \label{fig:hsv}
 \end{figure}
 
@@ -362,8 +366,8 @@ crop foliage:
 \begin{equation}
 M = BPPD \otimes
 \begin{bmatrix}
-       1 & 1 & 1\\[0.3em]
-       1 & 1 & 1 \\[0.3em]
+       1 & 1 & 1 \\
+       1 & 1 & 1 \\
        1 & 1 & 1
      \end{bmatrix}
 \label{eq:morph_opening}

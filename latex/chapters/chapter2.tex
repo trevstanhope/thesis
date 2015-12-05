@@ -83,6 +83,31 @@ Using the checkboard pattern, the lens and projection distortion was corrected.
   \caption{Checkerboard camera calibration}
   \label{fig:calibration}
 \end{figure}
+
+\begin{equation}
+  D =
+  \begin{bmatrix}
+    -3.2067\text{e+01} & -6.0284\text{e-03} & -3.2191\text{e-03} & -7.1271\text{e-02} & 2.4137\text{e-07} 
+  \end{bmatrix}
+\label{eq:dist_coefficients}
+\end{equation}
+\begin{flushleft}
+where D is the distant coefficients.
+\end{flushleft}
+
+\begin{equation}
+  M =
+  \begin{bmatrix}
+    8.8412\text{+03} & 0 & 3.2101\text{+02} \\
+    0 & 8.7331\text{+03} & 2.4051\text{+02} \\
+    0 & 0 & 1
+  \end{bmatrix}
+\label{eq:camera_matrix}
+\end{equation}
+\begin{flushleft}
+where M is the camera matrix.
+\end{flushleft}
+
 % --- END Camera Model --- %
 
 % --- BEGIN Image Processing --- %
